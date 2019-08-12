@@ -228,6 +228,7 @@ void realizeInstance(const SBStateDigest& sbs) const override
 // Must call base-to-tip.
 void realizePosition(const SBStateDigest& sbs) const override 
 {
+    std::cout << "BALLBUG RBSpec " << nodeNum << " realizePosition" << std::endl;
     const SBModelVars&      mv   = sbs.getModelVars();
     const SBModelCache&     mc   = sbs.getModelCache();
     const SBInstanceCache&  ic   = sbs.getInstanceCache();
@@ -304,6 +305,7 @@ void realizePosition(const SBStateDigest& sbs) const override
 // The code is the same for all joints, although parametrized by ndof.
 void realizeVelocity(const SBStateDigest& sbs) const override
 {
+    std::cout << "BALLBUG RBSpec  "<< nodeNum << " realizeVelocity" << std::endl;
     const SBModelVars&          mv = sbs.getModelVars();
     const SBTreePositionCache&  pc = sbs.getTreePositionCache();
     SBTreeVelocityCache&        vc = sbs.updTreeVelocityCache();
@@ -311,7 +313,9 @@ void realizeVelocity(const SBStateDigest& sbs) const override
     const Vec<dof>&             u = fromU(allU);
 
     // Mobilizer specific.
+    std::cout << "BBALLBUG RBSpec  "<< nodeNum << " realizeVelocity before calcQDot "; std::cout << sbs.updQDot()[qIndex] << std::endl;
     calcQDot(sbs, &allU[uIndex], &sbs.updQDot()[qIndex]);
+    std::cout << "BALLBUG RBSpec  "<< nodeNum << " realizeVelocity after calcQDot "; std::cout << sbs.updQDot()[qIndex] << std::endl;
 
     updV_FM(vc)    = getH_FM(pc) * u;   // 6*dof flops
     updV_PB_G(vc)  = getH(pc)    * u;   // 6*dof flops
@@ -327,6 +331,7 @@ void realizeVelocity(const SBStateDigest& sbs) const override
     // is expressed in Ground. (F is fixed on P and M is fixed on B.)
     calcParentToChildVelocityJacobianInGroundDot(mv,pc,vc, updHDot(vc));
     updVD_PB_G(vc) = getHDot(vc) * u;   // 6*dof flops
+    std::cout << "BALLBUG RBSpec  "<< nodeNum << " realizeVelocity u "; std::cout << u << std::endl;
 
     // Mobilizer independent.
     calcJointIndependentKinematicsVel(pc,vc);
@@ -608,6 +613,7 @@ void calcBodyTransforms(
     Transform&                  X_PB, 
     Transform&                  X_GB) const 
 {
+    std::cout << "BALLBUG RBSpec " << nodeNum << " calcBodyTransforms" << std::endl;
     const Transform& X_MB = getX_MB();   // fixed
     const Transform& X_PF = getX_PF();   // fixed
     const Transform& X_FM = getX_FM(pc); // just calculated
@@ -618,6 +624,7 @@ void calcBodyTransforms(
     X_PB = (noR_PF ? Transform(X_FB.R(), X_PF.p()+X_FB.p()) // cheap
                    : X_PF*X_FB);                            // 63 flops
     X_GB = X_GP * X_PB;                                     // 63 flops
+    std::cout << "BALLBUG RBSpec " << nodeNum << " calcBodyTransforms " << " X_FB X_GB " << X_FB << " " << X_GB << std::endl;
 }
 
 // Same for all mobilizers. The return matrix here is precisely the 

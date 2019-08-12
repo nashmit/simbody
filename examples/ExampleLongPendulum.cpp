@@ -43,7 +43,7 @@ int main() {
 
     MobilizedBody lastBody = matter.Ground();
     for (int i = 0; i < 10; ++i) {
-        MobilizedBody::Ball pendulum(lastBody,     Transform(Vec3(0)), 
+        MobilizedBody::Ball pendulum(lastBody,     Transform(Vec3(0)),
                                      pendulumBody, Transform(Vec3(0, 1, 0)));
         lastBody = pendulum;
     }

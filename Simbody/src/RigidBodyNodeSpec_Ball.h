@@ -115,6 +115,7 @@ void performQPrecalculations(const SBStateDigest& sbs,
                              Real*       qCache, int nQCache,
                              Real*       qErr,   int nQErr) const
 {
+    std::cout << "BALLBUG RBBall " << " performQPrecalculations" << std::endl;
     if (this->getUseEulerAngles(sbs.getModelVars())) {
         assert(q && nq==3 && qCache && nQCache==AnglePoolSize && nQErr==0);
 
@@ -141,6 +142,7 @@ void calcX_FM(const SBStateDigest& sbs,
               const Real* qCache, int nQCache,
               Transform&  X_F0M0) const
 {
+    std::cout << "BALLBUG RBSpecBall " << " calcX_FM" << std::endl;
     // Rotation.
     if (this->getUseEulerAngles(sbs.getModelVars())) {
         assert(q && nq==3 && qCache && nQCache==AnglePoolSize);
@@ -152,6 +154,7 @@ void calcX_FM(const SBStateDigest& sbs,
         // Here we normalize with just 4 flops using precalculated 1/norm(q).
         const Quaternion quat(Vec4::getAs(q)*qCache[QuatOONorm], true); 
         X_F0M0.updR().setRotationFromQuaternion(quat); // 29 flops
+        std::cout << "BALLBUG RBSpecBall " << " calcX_FM X_F0M0 " << X_F0M0 << std::endl;
     }
 
     // Translation.
@@ -164,6 +167,7 @@ void calcAcrossJointVelocityJacobian(
     const SBStateDigest& sbs,
     HType&               H_FM) const
 {
+    std::cout << "BALLBUG RBSpecBall calcAcrossJointVelocityJacobian" << std::endl;
     H_FM(0) = SpatialVec( Vec3(1,0,0), Vec3(0) );
     H_FM(1) = SpatialVec( Vec3(0,1,0), Vec3(0) );
     H_FM(2) = SpatialVec( Vec3(0,0,1), Vec3(0) );
@@ -174,6 +178,7 @@ void calcAcrossJointVelocityJacobianDot(
     const SBStateDigest& sbs,
     HType&               HDot_FM) const
 {
+    std::cout << "BALLBUG RBSpecBall calcAcrossJointVelocityJacobianDot" << std::endl;
     HDot_FM(0) = SpatialVec( Vec3(0), Vec3(0) );
     HDot_FM(1) = SpatialVec( Vec3(0), Vec3(0) );
     HDot_FM(2) = SpatialVec( Vec3(0), Vec3(0) );
@@ -186,6 +191,7 @@ void calcAcrossJointVelocityJacobianDot(
 // so we have to zero out the last one in that case.
 void calcQDot(const SBStateDigest& sbs, const Real* u, 
                              Real* qdot) const {
+    std::cout << "BALLBUG RBSpecBall calcQDot" << std::endl;
     // We have to trust that the tree position cache is valid here.
     assert(u && qdot);
 
@@ -194,6 +200,8 @@ void calcQDot(const SBStateDigest& sbs, const Real* u,
     // Generalized speeds are the same in either mode -- angular velocity
     // of F in M (or B in P), expressed in F (fixed on parent) frame.
     const Vec3& w_FM = Vec3::getAs(u);
+
+    std::cout << "BALLBUG RBSpecBall calcQDot w_FM " << w_FM << std::endl;
 
     if (this->getUseEulerAngles(mv)) {
         // Euler angle mode (10 flops)
@@ -206,10 +214,16 @@ void calcQDot(const SBStateDigest& sbs, const Real* u,
         Vec3::updAs(qdot) = Rotation::convertAngVelInParentToBodyXYZDot(
              Vec2::getAs(&pool[AngleCosQ]), Vec2::getAs(&pool[AngleSinQ]), //x,y
              pool[AngleOOCosQy], w_FM);
+
+        std::cout << "BALLBUG RBSpecBall calcQDot qdot Vec3 " << Vec3::updAs(qdot) << std::endl;
+
     } else {
         // Quaternion mode (27 flops)
         const Vec4& quat  = this->fromQuat(sbs.getQ()); // unnormalized
         Vec4::updAs(qdot) = Rotation::convertAngVelToQuaternionDot(quat, w_FM);
+
+        std::cout << "BALLBUG RBSpecBall calcQDot qdot Vec4 " << Vec4::updAs(qdot) << std::endl;
+
     }
 }
 

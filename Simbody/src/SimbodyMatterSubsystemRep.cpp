@@ -1389,10 +1389,16 @@ realizeVelocityKinematics(const State& state) const {
     // This includes all local cross-mobilizer velocities (M in F, B in P)
     // and all global velocities relative to Ground (G). Also computes qdots.
 
+
+
     // Set generalized speeds: sweep from base to tips.
-    for (int i=0 ; i<(int)rbNodeLevels.size() ; ++i) 
-        for (int j=0 ; j<(int)rbNodeLevels[i].size() ; ++j)
-            rbNodeLevels[i][j]->realizeVelocity(stateDigest); 
+    for (int i=0 ; i<(int)rbNodeLevels.size() ; ++i) {
+        for (int j = 0; j < (int) rbNodeLevels[i].size(); ++j) {
+            //std::cout << "BALLBUG SimbodyMatterSubsystemRep::realizeVelocityKinematics " << i << " " << j << " " << rbNodeLevels[i][j]->getX_GB(tpc).R() << std::endl;
+            //std::cout << "BALLBUG SimbodyMatterSubsystemRep::realizeVelocityKinematics QDot " << i << " " << j << " " <<  stateDigest.getQDot() << std::endl;
+            rbNodeLevels[i][j]->realizeVelocity(stateDigest);
+        }
+    }
 
     // Ask the constraints to calculate ancestor-relative velocity kinematics 
     // (still goes in TreeVelocityCache).

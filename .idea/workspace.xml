@@ -8,6 +8,7 @@
       <config projectName="Simbody" targetName="cpsAdvDiff_non" />
       <config projectName="Simbody" targetName="SemiExplicitEuler2IntegratorTest" />
       <config projectName="Simbody" targetName="ExampleSampleAndHold" />
+      <config projectName="Simbody" targetName="TestSqrtMassMatrix" />
       <config projectName="Simbody" targetName="ExampleKneeJoint" />
       <config projectName="Simbody" targetName="ParameterConstrainedOptimization" />
       <config projectName="Simbody" targetName="PlatformFiles_subdir" />
@@ -16,24 +17,24 @@
       <config projectName="Simbody" targetName="ExampleLongPendulum" />
       <config projectName="Simbody" targetName="ExampleAmysIKProblem" />
       <config projectName="Simbody" targetName="FactorLUTest" />
-      <config projectName="Simbody" targetName="TestSqrtMassMatrix" />
+      <config projectName="Simbody" targetName="TestConstraints" />
       <config projectName="Simbody" targetName="LBFGSTest" />
-      <config projectName="Simbody" targetName="UnconstrainedNumericalDiffOptimization" />
+      <config projectName="Simbody" targetName="NightlyMemoryCheck" />
       <config projectName="Simbody" targetName="RotationTest" />
       <config projectName="Simbody" targetName="RungeKuttaMersonIntegratorTest" />
+      <config projectName="Simbody" targetName="TestElasticFoundationForce" />
       <config projectName="Simbody" targetName="ExperimentalMemCheck" />
-      <config projectName="Simbody" targetName="NightlyBuild" />
       <config projectName="Simbody" targetName="RandomTest" />
       <config projectName="Simbody" targetName="NightlyMemCheck" />
       <config projectName="Simbody" targetName="TestMultibodyGraphMaker" />
       <config projectName="Simbody" targetName="TestNoseHooverThermostat" />
       <config projectName="Simbody" targetName="IntegratorTest" />
       <config projectName="Simbody" targetName="JunkMain1" />
-      <config projectName="Simbody" targetName="SBPendulum1" />
       <config projectName="Simbody" targetName="cpsRoberts_dnsL" />
       <config projectName="Simbody" targetName="TimsBox" />
-      <config projectName="Simbody" targetName="ContinuousStart" />
+      <config projectName="Simbody" targetName="PrescribedMotionPlayground" />
       <config projectName="Simbody" targetName="ExampleMotor-TorqueLimited-Motion" />
+      <config projectName="Simbody" targetName="PendLrCpp" />
       <config projectName="Simbody" targetName="cpsRoberts_dns" />
       <config projectName="Simbody" targetName="MiscConstraints" />
       <config projectName="Simbody" targetName="TestBigMatrix" />
@@ -43,7 +44,8 @@
       <config projectName="Simbody" targetName="cpsAdvDiff_bndL" />
       <config projectName="Simbody" targetName="TestTriangleMesh" />
       <config projectName="Simbody" targetName="UnconstrainedOptimization" />
-      <config projectName="Simbody" targetName="TheoJansenStrandbeest" />
+      <config projectName="Simbody" targetName="NightlyBuild" />
+      <config projectName="Simbody" targetName="cpsdenx" />
       <config projectName="Simbody" targetName="ExampleEventReporter" />
       <config projectName="Simbody" targetName="ExampleCablePath" />
       <config projectName="Simbody" targetName="pendLr" />
@@ -55,70 +57,68 @@
       <config projectName="Simbody" targetName="ExampleContactPlayground" />
       <config projectName="Simbody" targetName="CMAESTest" />
       <config projectName="Simbody" targetName="ContinuousMemCheck" />
-      <config projectName="Simbody" targetName="UserGuide" />
+      <config projectName="Simbody" targetName="TestIteratorRange" />
       <config projectName="Simbody" targetName="ContactTest" />
       <config projectName="Simbody" targetName="TestNiceTypeName" />
+      <config projectName="Simbody" targetName="ExampleMotor-TorqueLimited-Controller" />
       <config projectName="Simbody" targetName="NightlySubmit" />
+      <config projectName="Simbody" targetName="BilateralContactConstraints" />
       <config projectName="Simbody" targetName="newton" />
       <config projectName="Simbody" targetName="ExperimentalSubmit" />
-      <config projectName="Simbody" targetName="TestSimulation" />
-      <config projectName="Simbody" targetName="PlatformFiles" />
+      <config projectName="Simbody" targetName="TestMassMatrix" />
       <config projectName="Simbody" targetName="JunkMain2" />
       <config projectName="Simbody" targetName="SimpleDifferentiator" />
       <config projectName="Simbody" targetName="ExperimentalConfigure" />
-      <config projectName="Simbody" targetName="nlpqlp" />
+      <config projectName="Simbody" targetName="SpatialAlgebraTest" />
+      <config projectName="Simbody" targetName="TestCloneOnWritePtr" />
       <config projectName="Simbody" targetName="ConstrainedOptimization" />
       <config projectName="Simbody" targetName="ExperimentalStart" />
       <config projectName="Simbody" targetName="ContinuousTest" />
       <config projectName="Simbody" targetName="EigenTest" />
       <config projectName="Simbody" targetName="TimsBoxBristle" />
       <config projectName="Simbody" targetName="TestArray" />
+      <config projectName="Simbody" targetName="OpenSimPartyDemoCable" />
       <config projectName="Simbody" targetName="GazeboReactionForceWithAppliedForceRigid" />
-      <config projectName="Simbody" targetName="TaskSpaceControl-UR10" />
+      <config projectName="Simbody" targetName="TestScalar" />
       <config projectName="Simbody" targetName="TestFunctionBasedMobilizedBodies" />
       <config projectName="Simbody" targetName="JaredsDude" />
       <config projectName="Simbody" targetName="TestAtomic" />
       <config projectName="Simbody" targetName="cpsadamsx" />
+      <config projectName="Simbody" targetName="ExperimentalBuild" />
       <config projectName="Simbody" targetName="BigMatrixTest" />
       <config projectName="Simbody" targetName="LBFGSBTest" />
-      <config projectName="Simbody" targetName="BilateralContactConstraints" />
       <config projectName="Simbody" targetName="SimTKmath" />
-      <config projectName="Simbody" targetName="ExperimentalUpdate" />
+      <config projectName="Simbody" targetName="TimeStepperTest" />
       <config projectName="Simbody" targetName="WristMomentArm" />
       <config projectName="Simbody" targetName="StateTest" />
       <config projectName="Simbody" targetName="ConstrainedNumericalDiffOptimization" />
       <config projectName="Simbody" targetName="cpsbanx" />
       <config projectName="Simbody" targetName="LBFGSBDiffTest" />
       <config projectName="Simbody" targetName="SimpleDifferentiatorTest" />
-      <config projectName="Simbody" targetName="TimeStepperTest" />
       <config projectName="Simbody" targetName="BricardMechanism" />
       <config projectName="Simbody" targetName="LBFGSDiffTest" />
-      <config projectName="Simbody" targetName="ContinuousCoverage" />
+      <config projectName="Simbody" targetName="TestMobilizedBody" />
       <config projectName="Simbody" targetName="TestCustomMobilizedBodies" />
-      <config projectName="Simbody" targetName="SpatialAlgebraTest" />
+      <config projectName="Simbody" targetName="TestMassProperties" />
       <config projectName="Simbody" targetName="cpsNewtCrd_dns" />
-      <config projectName="Simbody" targetName="TestMassMatrix" />
       <config projectName="Simbody" targetName="PassThrough" />
       <config projectName="Simbody" targetName="PendulumExample" />
       <config projectName="Simbody" targetName="ContinuousUpdate" />
       <config projectName="Simbody" targetName="RungeKuttaFeldbergIntegratorTest" />
       <config projectName="Simbody" targetName="GeometryPlayground" />
       <config projectName="Simbody" targetName="DifferentiatorTest" />
-      <config projectName="Simbody" targetName="UnilateralPointContactWithFriction" />
       <config projectName="Simbody" targetName="ExampleEventHandler" />
       <config projectName="Simbody" targetName="TestPolygonalMesh" />
       <config projectName="Simbody" targetName="RungeKutta3IntegratorTest" />
-      <config projectName="Simbody" targetName="TestElasticFoundationForce" />
+      <config projectName="Simbody" targetName="TestPLUS_SingleBrick" />
       <config projectName="Simbody" targetName="ContinuousSubmit" />
-      <config projectName="Simbody" targetName="ContinuousBuild" />
-      <config projectName="Simbody" targetName="TestIteratorRange" />
-      <config projectName="Simbody" targetName="cpsPend_dnsL" />
+      <config projectName="Simbody" targetName="ExperimentalUpdate" />
       <config projectName="Simbody" targetName="cpsbanx_lap" />
       <config projectName="Simbody" targetName="TimsBoxPGS" />
-      <config projectName="Simbody" targetName="TestPLUS_SingleBrick" />
+      <config projectName="Simbody" targetName="TestSimulation" />
+      <config projectName="Simbody" targetName="LookAtPolygonalMesh" />
       <config projectName="Simbody" targetName="IpoptDiffTest" />
       <config projectName="Simbody" targetName="TestParallelForces" />
-      <config projectName="Simbody" targetName="TestPrivateImplementation" />
       <config projectName="Simbody" targetName="TestMultibodyPerformance" />
       <config projectName="Simbody" targetName="ParallelIpoptTest" />
       <config projectName="Simbody" targetName="SimTKcommon" />
@@ -126,23 +126,23 @@
       <config projectName="Simbody" targetName="cpsVanDPol_non" />
       <config projectName="Simbody" targetName="SFMTTest" />
       <config projectName="Simbody" targetName="ExampleAssemblerPlayground" />
-      <config projectName="Simbody" targetName="TestMassProperties" />
+      <config projectName="Simbody" targetName="PlatformFiles" />
       <config projectName="Simbody" targetName="Rattleback" />
-      <config projectName="Simbody" targetName="ExampleSimplePlanarMechanism" />
       <config projectName="Simbody" targetName="GazeboInelasticCollision" />
+      <config projectName="Simbody" targetName="TheoJansenStrandbeest" />
       <config projectName="Simbody" targetName="TestAngleConversions" />
-      <config projectName="Simbody" targetName="simbody-visualizer" />
+      <config projectName="Simbody" targetName="FreeWater" />
       <config projectName="Simbody" targetName="ExampleCustomConstraint" />
-      <config projectName="Simbody" targetName="TwoPendulums" />
       <config projectName="Simbody" targetName="TestParallel2DExecutor" />
       <config projectName="Simbody" targetName="TaskSpaceControl-Atlas" />
-      <config projectName="Simbody" targetName="UserGuideLimits" />
       <config projectName="Simbody" targetName="NightlyConfigure" />
       <config projectName="Simbody" targetName="GazeboBasicControllerResponse" />
       <config projectName="Simbody" targetName="TestSpline" />
-      <config projectName="Simbody" targetName="TestParallelWorkQueue" />
+      <config projectName="Simbody" targetName="nlpqlp" />
       <config projectName="Simbody" targetName="UnilateralPointContact" />
-      <config projectName="Simbody" targetName="FreeWater" />
+      <config projectName="Simbody" targetName="Nightly" />
+      <config projectName="Simbody" targetName="pend_test" />
+      <config projectName="Simbody" targetName="TestContactGeometry" />
       <config projectName="Simbody" targetName="TestGeo" />
       <config projectName="Simbody" targetName="DzhanibekovEffect" />
       <config projectName="Simbody" targetName="ExamplePendulum" />
@@ -155,81 +155,81 @@
       <config projectName="Simbody" targetName="TestMobilizerReactionForces" />
       <config projectName="Simbody" targetName="cpsPend_dns" />
       <config projectName="Simbody" targetName="LockUnlockConstraint" />
+      <config projectName="Simbody" targetName="CoarseRNA" />
       <config projectName="Simbody" targetName="IpoptTest" />
       <config projectName="Simbody" targetName="Differentiator" />
-      <config projectName="Simbody" targetName="ExampleMotorWithSpeedControl" />
+      <config projectName="Simbody" targetName="TestPrivateImplementation" />
       <config projectName="Simbody" targetName="TestGravity" />
       <config projectName="Simbody" targetName="CableOverBicubicSurfaces" />
-      <config projectName="Simbody" targetName="SemiExplicitEulerIntegratorTest" />
       <config projectName="Simbody" targetName="TestCustomConstraints" />
-      <config projectName="Simbody" targetName="RattleBack_ReverseEllipsoid" />
+      <config projectName="Simbody" targetName="TwoPendulums" />
       <config projectName="Simbody" targetName="VerletIntegratorTest" />
-      <config projectName="Simbody" targetName="OpenSimPartyDemoCable" />
+      <config projectName="Simbody" targetName="UserGuideLimits" />
       <config projectName="Simbody" targetName="SimbodyInstallTestNoViz" />
-      <config projectName="Simbody" targetName="ExplicitEulerIntegratorTest" />
       <config projectName="Simbody" targetName="PolynomialTest" />
       <config projectName="Simbody" targetName="TestReverseMobilizers" />
-      <config projectName="Simbody" targetName="PrescribedMotionPlayground" />
+      <config projectName="Simbody" targetName="NightlyTest" />
       <config projectName="Simbody" targetName="CpsAdamsXCpp" />
-      <config projectName="Simbody" targetName="LookAtPolygonalMesh" />
-      <config projectName="Simbody" targetName="CoarseRNA" />
+      <config projectName="Simbody" targetName="UserGuide" />
+      <config projectName="Simbody" targetName="SBPendulum1" />
+      <config projectName="Simbody" targetName="RattleBack_ReverseEllipsoid" />
       <config projectName="Simbody" targetName="FactorQTZTest" />
       <config projectName="Simbody" targetName="GazeboReactionForce" />
-      <config projectName="Simbody" targetName="pendEs" />
       <config projectName="Simbody" targetName="TestSmallMatrix" />
+      <config projectName="Simbody" targetName="TestPimpl1" />
       <config projectName="Simbody" targetName="TestParallelExecutor" />
-      <config projectName="Simbody" targetName="cpsdenx" />
+      <config projectName="Simbody" targetName="UnilateralPointContactWithFriction" />
       <config projectName="Simbody" targetName="ExampleGears" />
       <config projectName="Simbody" targetName="ExampleGeodesic" />
       <config projectName="Simbody" targetName="pend" />
       <config projectName="Simbody" targetName="ExampleIMUTracking" />
       <config projectName="Simbody" targetName="TestHuntCrossleyForce" />
-      <config projectName="Simbody" targetName="ExperimentalBuild" />
+      <config projectName="Simbody" targetName="cpsPend_dnsL" />
       <config projectName="Simbody" targetName="TestForces" />
-      <config projectName="Simbody" targetName="TestCloneOnWritePtr" />
+      <config projectName="Simbody" targetName="TaskSpaceControl-UR10" />
       <config projectName="Simbody" targetName="ChainExample" />
       <config projectName="Simbody" targetName="ContinuousConfigure" />
       <config projectName="Simbody" targetName="CompliantBlockImpact" />
       <config projectName="Simbody" targetName="SimpleIntegrator" />
+      <config projectName="Simbody" targetName="ExampleClosedTopologyMechanism" />
       <config projectName="Simbody" targetName="TestFunction" />
       <config projectName="Simbody" targetName="ExampleScissorLift" />
-      <config projectName="Simbody" targetName="PendLrCpp" />
+      <config projectName="Simbody" targetName="ExperimentalTest" />
       <config projectName="Simbody" targetName="Gazebo2Simbody" />
       <config projectName="Simbody" targetName="PendulumNoViz" />
-      <config projectName="Simbody" targetName="ExampleMotor-TorqueLimited-Controller" />
-      <config projectName="Simbody" targetName="Nightly" />
+      <config projectName="Simbody" targetName="UnconstrainedNumericalDiffOptimization" />
+      <config projectName="Simbody" targetName="ExampleSimplePlanarMechanism" />
       <config projectName="Simbody" targetName="SphericalCoordsMobilizerTest" />
-      <config projectName="Simbody" targetName="TestScalar" />
       <config projectName="Simbody" targetName="RUN_TESTS_PARALLEL" />
-      <config projectName="Simbody" targetName="TestContactGeometry" />
+      <config projectName="Simbody" targetName="pendEs" />
       <config projectName="Simbody" targetName="BestAvailableTest" />
       <config projectName="Simbody" targetName="GazeboReactionForceWithAppliedForceCompliant" />
       <config projectName="Simbody" targetName="TestOrientedBoundingBox" />
       <config projectName="Simbody" targetName="TestXml" />
       <config projectName="Simbody" targetName="ContactBigMeshes" />
-      <config projectName="Simbody" targetName="TestPimpl1" />
+      <config projectName="Simbody" targetName="ExplicitEulerIntegratorTest" />
       <config projectName="Simbody" targetName="Experimental" />
-      <config projectName="Simbody" targetName="RigidContact1" />
       <config projectName="Simbody" targetName="TestCollisionDetectionAlgorithm" />
       <config projectName="Simbody" targetName="ExampleMotor-TorqueLimited-Constraint" />
-      <config projectName="Simbody" targetName="TestMobilizedBody" />
+      <config projectName="Simbody" targetName="ContinuousBuild" />
       <config projectName="Simbody" targetName="TestThermostat" />
       <config projectName="Simbody" targetName="NightlyUpdate" />
       <config projectName="Simbody" targetName="TestPlugin" />
       <config projectName="Simbody" targetName="SimbodyInstallTest" />
-      <config projectName="Simbody" targetName="NightlyTest" />
-      <config projectName="Simbody" targetName="pend_test" />
+      <config projectName="Simbody" targetName="TestParallelWorkQueue" />
+      <config projectName="Simbody" targetName="ContinuousCoverage" />
       <config projectName="Simbody" targetName="MovingMusclePointMomentArm" />
-      <config projectName="Simbody" targetName="ExampleClosedTopologyMechanism" />
+      <config projectName="Simbody" targetName="ContinuousStart" />
       <config projectName="Simbody" targetName="ContactBrickTest" />
       <config projectName="Simbody" targetName="ExampleTwoBoxCollide" />
       <config projectName="Simbody" targetName="TestRiboseMobilizer" />
       <config projectName="Simbody" targetName="TestBicubicSurface" />
-      <config projectName="Simbody" targetName="NightlyMemoryCheck" />
-      <config projectName="Simbody" targetName="TestConstraints" />
+      <config projectName="Simbody" targetName="SemiExplicitEulerIntegratorTest" />
+      <config projectName="Simbody" targetName="RigidContact1" />
+      <config projectName="Simbody" targetName="simbody-visualizer" />
       <config projectName="Simbody" targetName="cpsAdvDiff_bnd" />
       <config projectName="Simbody" targetName="ElasticFoundation" />
-      <config projectName="Simbody" targetName="ExperimentalTest" />
+      <config projectName="Simbody" targetName="ExampleMotorWithSpeedControl" />
       <config projectName="Simbody" targetName="RadusDrifter" />
       <config projectName="Simbody" targetName="BNTTest" />
     </generated>
@@ -241,10 +241,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d276e50a-2cbe-41a1-b7f5-972673420a99" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/SimTKcommon/Simulation/src/System.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/SimTKcommon/Simulation/src/System.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SimTKmath/Integrators/src/AbstractIntegratorRep.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/SimTKmath/Integrators/src/AbstractIntegratorRep.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SimTKmath/Integrators/src/TimeStepper.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/SimTKmath/Integrators/src/TimeStepper.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SimTKmath/Integrators/src/VerletIntegrator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/SimTKmath/Integrators/src/VerletIntegrator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simbody/src/RigidBodyNode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Simbody/src/RigidBodyNode.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simbody/src/RigidBodyNodeSpec.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Simbody/src/RigidBodyNodeSpec.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simbody/src/RigidBodyNodeSpec.h" beforeDir="false" afterPath="$PROJECT_DIR$/Simbody/src/RigidBodyNodeSpec.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simbody/src/RigidBodyNodeSpec_Ball.h" beforeDir="false" afterPath="$PROJECT_DIR$/Simbody/src/RigidBodyNodeSpec_Ball.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simbody/src/RigidBodyNodeSpec_Free.h" beforeDir="false" afterPath="$PROJECT_DIR$/Simbody/src/RigidBodyNodeSpec_Free.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simbody/src/SimbodyMatterSubsystemRep.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Simbody/src/SimbodyMatterSubsystemRep.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/ExampleLongPendulum.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/examples/ExampleLongPendulum.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/build-debug/" />
@@ -261,37 +266,37 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="225">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SimTKmath/Integrators/src/VerletIntegrator.cpp">
+        <entry file="file://$PROJECT_DIR$/Simbody/src/SimbodyMatterSubsystemRep.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="252" column="7" selection-start-line="252" selection-start-column="3" selection-end-line="252" selection-end-column="7" />
+            <state relative-caret-position="22635">
+              <caret line="1509" selection-start-line="1509" selection-end-line="1509" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SimTKmath/Integrators/src/TimeStepper.cpp">
+        <entry file="file://$PROJECT_DIR$/Simbody/src/SimbodyMatterSubsystemRep.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="128" column="46" selection-start-line="128" selection-start-column="46" selection-end-line="128" selection-end-column="46" />
+            <state relative-caret-position="125">
+              <caret line="129" column="22" lean-forward="true" selection-start-line="129" selection-start-column="22" selection-end-line="129" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SimTKmath/Integrators/src/AbstractIntegratorRep.h">
+        <entry file="file://$PROJECT_DIR$/Simbody/src/RigidBodyNodeSpec.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+            <state relative-caret-position="58">
+              <caret line="251" column="21" selection-start-line="251" selection-start-column="21" selection-end-line="251" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/SimTKmath/Integrators/src/AbstractIntegratorRep.cpp">
+        <entry file="file://$PROJECT_DIR$/examples/ExampleLongPendulum.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="35">
-              <caret line="217" column="7" selection-start-line="217" selection-start-column="3" selection-end-line="217" selection-end-column="7" />
+            <state relative-caret-position="245">
+              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
@@ -300,7 +305,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>TIME</find>
+      <find>realizeArticulatedBodyVeloc</find>
+      <find>calcTreeAccele</find>
+      <find>calcTreeForward</find>
+      <find>realizeLoopForward</find>
+      <find>realizeSubsystemAcceleration</find>
+      <find>calcJointInde</find>
+      <find>realizePositionKinematics</find>
+      <find>g</find>
+      <find>realizeSubsystemVelocityImpl</find>
+      <find>Q</find>
+      <find>calcJoin</find>
+      <find>calcX</find>
+      <find>BA</find>
+      <find>BALL</find>
+      <find>realizeVelocity</find>
+      <find>Velocity</find>
+      <find>calcJoint</find>
+      <find>calcJointI</find>
+      <find>calcParent</find>
+      <find>realizeSubsystemPosition</find>
+      <find>perform</find>
+      <find>realizePosition</find>
+      <find>nodeNum</find>
+      <find>calcX_FM</find>
+      <find>calcAcrossJoint</find>
+      <find>BALLBUG</find>
+      <find>before</find>
+      <find>calcQDot</find>
+      <find>multiplyBySqrt</find>
+      <find>Rotation(-90*Deg2Rad, YAxis)</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -310,8 +344,15 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/SimTKcommon/Simulation/src/System.cpp" />
-        <option value="$PROJECT_DIR$/SimTKmath/Integrators/src/VerletIntegrator.cpp" />
         <option value="$PROJECT_DIR$/SimTKmath/Integrators/src/AbstractIntegratorRep.cpp" />
+        <option value="$PROJECT_DIR$/SimTKmath/Integrators/src/VerletIntegrator.cpp" />
+        <option value="$PROJECT_DIR$/Simbody/src/SimbodyMatterSubsystemRep.cpp" />
+        <option value="$PROJECT_DIR$/Simbody/src/RigidBodyNodeSpec_Ball.h" />
+        <option value="$PROJECT_DIR$/Simbody/src/RigidBodyNodeSpec.h" />
+        <option value="$PROJECT_DIR$/Simbody/src/RigidBodyNodeSpec_Free.h" />
+        <option value="$PROJECT_DIR$/Simbody/src/RigidBodyNode.cpp" />
+        <option value="$PROJECT_DIR$/Simbody/src/RigidBodyNodeSpec.cpp" />
+        <option value="$PROJECT_DIR$/examples/ExampleLongPendulum.cpp" />
       </list>
     </option>
   </component>
@@ -327,10 +368,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="65" />
+    <option name="x" value="3840" />
     <option name="y" value="23" />
-    <option name="width" value="1471" />
-    <option name="height" value="841" />
+    <option name="width" value="1858" />
+    <option name="height" value="1177" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -338,6 +379,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -345,14 +387,25 @@
               <item name="Simbody" type="b2602c69:ProjectViewProjectNode" />
               <item name="simbody" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Simbody" type="b2602c69:ProjectViewProjectNode" />
+              <item name="simbody" type="462c0819:PsiDirectoryNode" />
+              <item name="Simbody" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Simbody" type="b2602c69:ProjectViewProjectNode" />
+              <item name="simbody" type="462c0819:PsiDirectoryNode" />
+              <item name="Simbody" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
@@ -369,7 +422,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="CMake Application.ExamplePendulum">
+  <component name="RunManager" selected="CMake Application.ExampleLongPendulum">
     <configuration name="BNTTest" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Simbody" TARGET_NAME="BNTTest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Simbody" RUN_TARGET_NAME="BNTTest">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -1771,27 +1824,71 @@
       <workItem from="1556520080913" duration="458000" />
       <workItem from="1556520600771" duration="682000" />
       <workItem from="1556611194031" duration="1092000" />
+      <workItem from="1556696350936" duration="80000" />
+      <workItem from="1558189270034" duration="828000" />
+      <workItem from="1562241731789" duration="10000" />
+      <workItem from="1562241760314" duration="290000" />
+      <workItem from="1562839086771" duration="2000" />
+      <workItem from="1562839144866" duration="3814000" />
+      <workItem from="1563355446022" duration="5683000" />
+      <workItem from="1563362778812" duration="153000" />
+      <workItem from="1563362946678" duration="5659000" />
+      <workItem from="1563369560147" duration="1169000" />
+      <workItem from="1563378412168" duration="5000" />
+      <workItem from="1563378451982" duration="1182000" />
+      <workItem from="1563449110579" duration="2077000" />
+      <workItem from="1563452001205" duration="2650000" />
+      <workItem from="1563455121220" duration="801000" />
+      <workItem from="1563456094982" duration="350000" />
+      <workItem from="1563456650274" duration="95000" />
+      <workItem from="1563456974908" duration="97000" />
+      <workItem from="1563457607602" duration="964000" />
+      <workItem from="1563458907646" duration="300000" />
+      <workItem from="1563777155911" duration="447000" />
+      <workItem from="1563777975183" duration="558000" />
+      <workItem from="1563778759970" duration="821000" />
+      <workItem from="1563779830654" duration="171000" />
+      <workItem from="1563780421970" duration="660000" />
+      <workItem from="1563781495678" duration="1150000" />
+      <workItem from="1563782910375" duration="441000" />
+      <workItem from="1563784060573" duration="1500000" />
+      <workItem from="1563785774046" duration="536000" />
+      <workItem from="1563786467372" duration="1767000" />
+      <workItem from="1563788786856" duration="2779000" />
+      <workItem from="1563793474672" duration="299000" />
+      <workItem from="1563794153933" duration="269000" />
+      <workItem from="1563794542018" duration="369000" />
+      <workItem from="1563882714187" duration="782000" />
+      <workItem from="1563883614580" duration="11000" />
+      <workItem from="1563883643482" duration="3941000" />
+      <workItem from="1563971692446" duration="2230000" />
+      <workItem from="1565173793915" duration="428000" />
+      <workItem from="1565182048025" duration="4840000" />
+      <workItem from="1565357367297" duration="1290000" />
+      <workItem from="1565360733002" duration="896000" />
+      <workItem from="1565600435019" duration="622000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8138000" />
+    <option name="totallyTimeSpent" value="61154000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="23" width="1471" height="841" extended-state="0" />
+    <frame x="3840" y="23" width="1858" height="1177" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25505227" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17727771" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3299909" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3299909" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39927074" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4211486" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info active="true" anchor="bottom" id="Messages" order="8" visible="true" weight="0.40078843" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.4001823" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.3298292" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" />
@@ -1806,59 +1903,244 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/SimTKmath/Integrators/src/AbstractIntegratorRep.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimTKcommon/Simulation/include/SimTKcommon/internal/State.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="159" lean-forward="true" selection-start-line="159" selection-end-line="159" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/examples/ExamplePendulum.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="152" column="37" selection-start-line="152" selection-start-column="37" selection-end-line="152" selection-end-column="37" />
+        <state relative-caret-position="120">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SimTKcommon/Simulation/include/SimTKcommon/internal/SystemGuts.h">
+    <entry file="file://$PROJECT_DIR$/Simbody/include/simbody/internal/MobilizedBody_Pin.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="197" column="28" selection-start-line="197" selection-start-column="28" selection-end-line="197" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SimTKmath/Integrators/src/IntegratorRep.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11241">
-          <caret line="757" column="27" selection-start-line="757" selection-start-column="27" selection-end-line="757" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SimTKcommon/Simulation/src/System.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="571" column="50" selection-start-line="571" selection-start-column="50" selection-end-line="571" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SimTKmath/Integrators/src/VerletIntegrator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="252" column="7" selection-start-line="252" selection-start-column="3" selection-end-line="252" selection-end-column="7" />
+        <state relative-caret-position="242">
+          <caret line="75" selection-start-line="75" selection-end-line="75" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SimTKmath/Integrators/src/TimeStepper.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="128" column="46" selection-start-line="128" selection-start-column="46" selection-end-line="128" selection-end-column="46" />
+        <state relative-caret-position="216">
+          <caret line="81" selection-start-line="81" selection-end-line="81" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SimTKmath/Integrators/src/AbstractIntegratorRep.h">
+    <entry file="file://$PROJECT_DIR$/SimTKmath/Integrators/src/TimeStepperRep.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+        <state relative-caret-position="308">
+          <caret line="84" column="16" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimTKcommon/Simulation/include/SimTKcommon/internal/System.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="871" selection-start-line="871" selection-end-line="871" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Simbody/src/MultibodySystemRep.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="339" selection-start-line="339" selection-end-line="339" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimTKmath/Integrators/include/simmath/Integrator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4125">
+          <caret line="412" column="8" lean-forward="true" selection-start-line="412" selection-start-column="8" selection-end-line="412" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimTKmath/Integrators/src/Integrator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="63" column="18" selection-start-line="63" selection-start-column="12" selection-end-line="63" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimTKcommon/Simulation/include/SimTKcommon/internal/SystemGuts.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="194" column="16" selection-start-line="194" selection-start-column="16" selection-end-line="194" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Simbody/src/MotionImpl.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="127" column="9" selection-start-line="127" selection-start-column="9" selection-end-line="127" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/ExampleSimplePlanarMechanism.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1275">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimTKmath/Integrators/src/IntegratorRep.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2955">
+          <caret line="197" column="11" selection-start-line="197" selection-start-column="11" selection-end-line="197" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Simbody/src/RigidBodyNodeSpec_Pin.h">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Simbody/src/MobilizedBody.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15210">
+          <caret line="1014" column="23" selection-start-line="1014" selection-start-column="23" selection-end-line="1014" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Simbody/src/MobilizedBodyImpl.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1305">
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SimTKmath/Integrators/src/AbstractIntegratorRep.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="217" column="7" selection-start-line="217" selection-start-column="3" selection-end-line="217" selection-end-column="7" />
+        <state relative-caret-position="9030">
+          <caret line="602" column="79" selection-start-line="602" selection-start-column="79" selection-end-line="602" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimTKmath/Integrators/src/VerletIntegratorRep.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="15" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Simbody/src/SimbodyTreeState.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21450">
+          <caret line="1430" column="58" selection-start-line="1430" selection-start-column="58" selection-end-line="1430" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimTKcommon/Simulation/src/System.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1025">
+          <caret line="791" selection-start-line="791" selection-end-line="791" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Simbody/src/MultibodySystem.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1025">
+          <caret line="235" selection-start-line="235" selection-end-line="235" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimTKcommon/Simulation/src/Subsystem.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1025">
+          <caret line="285" selection-start-line="285" selection-end-line="285" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Simbody/src/RigidBodyNode_LoneParticle.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1140">
+          <caret line="76" column="5" selection-start-line="76" selection-start-column="5" selection-end-line="76" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimTKmath/Integrators/src/VerletIntegrator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="590">
+          <caret line="90" column="18" selection-start-line="90" selection-start-column="18" selection-end-line="90" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Simbody/src/Body.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="122" column="13" selection-start-line="122" selection-start-column="13" selection-end-line="122" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Simbody/src/RigidBodyNode.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16635">
+          <caret line="1109" column="19" selection-start-line="1109" selection-start-column="19" selection-end-line="1109" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Simbody/src/RigidBodyNodeSpec_Ball.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="364" column="43" selection-start-line="364" selection-start-column="43" selection-end-line="364" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Simbody/src/RigidBodyNode.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1025">
+          <caret line="220" selection-start-line="220" selection-end-line="220" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Simbody/src/RigidBodyNodeSpec_Free.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1025">
+          <caret line="199" column="37" selection-start-line="199" selection-start-column="37" selection-end-line="199" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Simbody/src/RigidBodyNodeSpec.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1025">
+          <caret line="559" column="24" selection-start-line="559" selection-start-column="24" selection-end-line="559" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Simbody/src/SimbodyMatterSubsystemRep.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22635">
+          <caret line="1509" selection-start-line="1509" selection-end-line="1509" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Simbody/src/RigidBodyNodeSpec.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="58">
+          <caret line="251" column="21" selection-start-line="251" selection-start-column="21" selection-end-line="251" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Simbody/src/SimbodyMatterSubsystemRep.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="129" column="22" lean-forward="true" selection-start-line="129" selection-start-column="22" selection-end-line="129" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/ExampleLongPendulum.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>

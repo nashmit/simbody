@@ -69,7 +69,7 @@ bool VerletIntegratorRep::attemptDAEStep
     const System& system   = getSystem();
     State& advanced = updAdvancedState();
     Vector dummyErrEst; // for when we don't want the error estimate projected
-    
+
     statsStepsAttempted++;
 
     const Real    t0        = getPreviousTime();       // nicer names
@@ -94,6 +94,7 @@ bool VerletIntegratorRep::attemptDAEStep
 
   try
   {
+    std::cout << "BALLBUG DAE BEGIN " << advanced.getQ() << std::endl;
     numIterations = 0;
 
     VectorView qErrEst  = yErrEst(    0, nq);       // all 3rd order estimates
@@ -108,33 +109,45 @@ bool VerletIntegratorRep::attemptDAEStep
     advanced.updTime() = t1;
     advanced.updQ()    = q0 + h*qdot0 + (h*h/2)*qdotdot0;
 
+      std::cout << "BALLBUG DAE q0 qdot0 qdotdot0 " << q0 << " " << qdot0 << " " << qdotdot0 << std::endl;
+
+
+      std::cout << "BALLBUG DAE 1 " << advanced.getQ() << std::endl;
     // Now make an initial estimate of first-order variable u and z.
     const Vector u1_est = u0 + h*udot0;
     const Vector z1_est = z0 + h*zdot0;
 
     advanced.updU() = u1_est; // u's and z's will change in advanced below
     advanced.updZ() = z1_est;
-
+ 
+    std::cout << "BALLBUG DAE 2 " << advanced.getQ() << std::endl;
     system.realize(advanced, Stage::Time);
+    std::cout << "BALLBUG DAE 3 " << advanced.getQ() << std::endl;
     system.prescribeQ(advanced);
+    std::cout << "BALLBUG DAE 4 " << advanced.getQ() << std::endl;
     system.realize(advanced, Stage::Position);
+    std::cout << "BALLBUG DAE 5 " << advanced.getQ() << std::endl;
 
     // Consider position constraint projection. (See AbstractIntegratorRep
     // for how we decide not to project.)
     const Real projectionLimit = 
         std::max(2*getConstraintToleranceInUse(), 
                     std::sqrt(getConstraintToleranceInUse()));
+    std::cout << "BALLBUG DAE 6 " << advanced.getQ() << std::endl;
 
     bool anyChangesQ;
     if (!localProjectQAndQErrEstNoThrow(advanced, dummyErrEst, anyChangesQ, 
                                         projectionLimit))
         return false; // convergence failure for this step
 
+    std::cout << "BALLBUG DAE 7 " << advanced.getQ() << std::endl;
     // q is now at its final integrated, prescribed, and projected value.
     // u and z still need refinement.
 
     system.prescribeU(advanced);
+    std::cout << "BALLBUG DAE 8 " << advanced.getQ() << std::endl;
     system.realize(advanced, Stage::Velocity);
+    std::cout << "BALLBUG DAE 9 " << advanced.getQ() << std::endl;
 
     // No u projection yet.
 
@@ -145,7 +158,9 @@ bool VerletIntegratorRep::attemptDAEStep
 
     // Get new values for the derivatives.
     realizeStateDerivatives(advanced);
-    
+    std::cout << "BALLBUG DAE 10 " << advanced.getQ() << std::endl;
+
+
 // TIME STOP ..........................................................................................................................
 //std::chrono::steady_clock::time_point end1 = std::chrono::steady_clock::now();
 //std::cout << "VerletIntegratorRep attemptDAEStep end1 - start0 "<< std::chrono::duration_cast<std::chrono::microseconds >(end1 - start0).count() << " us.\n";
@@ -178,9 +193,12 @@ bool VerletIntegratorRep::attemptDAEStep
         advanced.setU(u0 + (h/2)*(udot0 + udot1));
         advanced.setZ(z0 + (h/2)*(zdot0 + zdot1));
 
+    std::cout << "BALLBUG DAE 11 " << advanced.getQ() << std::endl;
         // Fix prescribed u's which may have been changed here.
         system.prescribeU(advanced);
+    std::cout << "BALLBUG DAE 12 " << advanced.getQ() << std::endl;
         system.realize(advanced, Stage::Velocity);
+    std::cout << "BALLBUG DAE 13 " << advanced.getQ() << std::endl;
 
         // No projection yet.
 
@@ -191,6 +209,7 @@ bool VerletIntegratorRep::attemptDAEStep
 
         // Calculate fresh derivatives UDot and ZDot.
         realizeStateDerivatives(advanced);
+    std::cout << "BALLBUG DAE 14 " << advanced.getQ() << std::endl;
 
 // TIME STOP ..........................................................................................................................
 //std::chrono::steady_clock::time_point end3 = std::chrono::steady_clock::now();
@@ -254,6 +273,7 @@ bool VerletIntegratorRep::attemptDAEStep
 //std::chrono::steady_clock::time_point end4 = std::chrono::steady_clock::now();
 //std::cout << "VerletIntegratorRep attemptDAEStep end4 - start0 "<< std::chrono::duration_cast<std::chrono::microseconds >(end4 - start0).count() << " us.\n";
 // TIME STOP ==========================================================================================================================
+      std::cout << "BALLBUG DAE END " << advanced.getQ() << std::endl;
 
     return converged;
   }

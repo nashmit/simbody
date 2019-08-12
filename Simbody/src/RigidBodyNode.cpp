@@ -54,10 +54,13 @@ void RigidBodyNode::addChild(RigidBodyNode* child) {
 void RigidBodyNode::calcJointIndependentKinematicsPos(
     SBTreePositionCache&    pc) const
 {
+    std::cout << "BALLBUG RB  "<< nodeNum << " calcJointIndependentKinematicsPos " << std::endl;
     assert(nodeNum != 0); // Don't call this for Ground.
 
     // Re-express parent-to-child shift vector (Bo-Po) into the ground frame.
     const Vec3 p_PB_G = getX_GP(pc).R() * getX_PB(pc).p(); // 15 flops
+
+    std::cout << "BALLBUG RB  "<< nodeNum << " calcJointIndependentKinematicsPos p_PB_G " << p_PB_G << std::endl;
 
     // The Phi matrix conveniently performs child-to-parent (inward) shifting
     // on spatial quantities (forces); its transpose does parent-to-child
@@ -99,6 +102,7 @@ RigidBodyNode::calcJointIndependentKinematicsVel(
     const SBTreePositionCache& pc,
     SBTreeVelocityCache&       vc) const
 {
+    std::cout << "BALLBUG RB  "<< nodeNum << " calcJointIndependentKinematicsVel " << std::endl;
     assert(nodeNum != 0); // Don't call this for Ground.
 
     const SpatialVec& V_GP   = parent->getV_GB(vc); // parent P's velocity in G
@@ -205,6 +209,7 @@ RigidBodyNode::realizeArticulatedBodyVelocityCache
     const SBArticulatedBodyInertiaCache&    abc,
     SBArticulatedBodyVelocityCache&         abvc) const
 {
+    std::cout << "BALLBUG RB  "<< nodeNum << " realizeArticulatedBodyVelocityCache " << std::endl;
     assert(nodeNum != 0); // Don't call this for Ground.
 
     // 72 flops (P*a + b)
@@ -233,6 +238,7 @@ RigidBodyNode::calcCompositeBodyInertiasInward(
     const SBTreePositionCache&  pc,
     Array_<SpatialInertia,MobilizedBodyIndex>& allR) const
 {
+    std::cout << "BALLBUG RB  "<< nodeNum << " calcCompositeBodyInertiasInward " << std::endl;
     SpatialInertia& R = toB(allR);
     R = getMk_G(pc);
     for (unsigned i=0; i<children.size(); ++i) {
