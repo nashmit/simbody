@@ -80,6 +80,7 @@ RBNodeFree(const MassProperties& mProps_B,
 void setQToFitTransformImpl(const SBStateDigest& sbs, const Transform& X_FM, 
                             Vector& q) const override 
 {
+    std::cout << "BALLBUG RBSpecFree setQToFitTransformImpl" << std::endl;
     setQToFitTranslationImpl(sbs, X_FM.p(), q); // see below
     setQToFitRotationImpl(sbs, X_FM.R(), q);
 }
@@ -87,6 +88,7 @@ void setQToFitTransformImpl(const SBStateDigest& sbs, const Transform& X_FM,
 void setQToFitRotationImpl(const SBStateDigest& sbs, const Rotation& R_FM,
                           Vector& q) const override
 {
+    std::cout << "BALLBUG RBSpecFree  " << std::endl;
     if (this->getUseEulerAngles(sbs.getModelVars()))
         this->toQVec3(q,0) = R_FM.convertRotationToBodyFixedXYZ();
     else
@@ -101,6 +103,7 @@ void setQToFitTranslationImpl(const SBStateDigest& sbs,
                               const Vec3& p_FM,
                               Vector& q) const override
 {
+    std::cout << "BALLBUG RBSpecFree  " << std::endl;
     if (this->getUseEulerAngles(sbs.getModelVars()))
         this->toQVec3(q,3) = p_FM; // skip the 3 Euler angles
     else
@@ -113,6 +116,7 @@ void setUToFitAngularVelocityImpl(const SBStateDigest& sbs,
                                   const Vector& q, const Vec3& w_FM,
                                   Vector& u) const override
 {
+    std::cout << "BALLBUG RBSpecFree  setUToFitAngularVelocityImpl" << std::endl;
     this->toUVec3(u,0) = w_FM; // relative ang. vel. always used as generalized speeds
 }
 
@@ -122,6 +126,7 @@ void setUToFitLinearVelocityImpl(const SBStateDigest& sbs,
                                  const Vector& q, const Vec3& v_FM,
                                  Vector& u) const override
 {
+    std::cout << "BALLBUG RBSpecFree setUToFitLinearVelocityImpl " << std::endl;
     this->toUVec3(u,3) = v_FM;
 }
 
@@ -144,8 +149,11 @@ void performQPrecalculations(const SBStateDigest& sbs,
                              Real*       qCache, int nQCache,
                              Real*       qErr,   int nQErr) const override
 {
+    std::cout << "BALLBUG RBSpecFree performQPrecalculations " << std::endl;
     if (this->getUseEulerAngles(sbs.getModelVars())) {
         assert(q && nq==6 && qCache && nQCache==AnglePoolSize && nQErr==0);
+
+        std::cout << "BALLBUG RBSpecFree performQPrecalculations UseEulerAngles" << std::endl;
 
         const Real cy = std::cos(q[1]);
         Vec3::updAs(&qCache[AngleCosQ]) =
@@ -156,6 +164,7 @@ void performQPrecalculations(const SBStateDigest& sbs,
     } else {
         assert(q && nq==7 && qCache && nQCache==QuatPoolSize && 
                qErr && nQErr==1);
+        std::cout << "BALLBUG RBSpecFree performQPrecalculations UseQuaternions" << std::endl;
 
         const Real quatLen = Vec4::getAs(q).norm();
         qErr[0] = quatLen - Real(1);    // normalization error
@@ -174,11 +183,13 @@ void calcX_FM(const SBStateDigest& sbs,
     if (this->getUseEulerAngles(sbs.getModelVars())) {
         assert(q && nq==6 && qCache && nQCache==AnglePoolSize);
 
+        std::cout << "BALLBUG RBSpecFree calcX_FM UseEulerAngles" << std::endl;
         X_F0M0.updR().setRotationToBodyFixedXYZ // 18 flops
            (Vec3::getAs(&qCache[AngleCosQ]), Vec3::getAs(&qCache[AngleSinQ]));
         X_F0M0.updP() = Vec3::getAs(&q[3]); // a012 x y z
     } else {
         assert(q && nq==7 && qCache && nQCache==QuatPoolSize);
+        std::cout << "BALLBUG RBSpecFree calcX_FM UseQuaternions" << std::endl;
 
         // Must use a normalized quaternion to generate the rotation matrix.
         // Here we normalize with just 4 flops using precalculated 1/norm(q).
@@ -274,6 +285,7 @@ void calcQDot(const SBStateDigest& sbs, const Real* u,
 void multiplyByN(const SBStateDigest& sbs, bool matrixOnRight, 
                  const Real* in, Real* out) const override
 {
+    std::cout << "BALLBUG RBSpecFree multiplyByN " << std::endl;
     assert(sbs.getStage() >= Stage::Position);
     assert(in && out);
 
@@ -322,6 +334,7 @@ void multiplyByN(const SBStateDigest& sbs, bool matrixOnRight,
 void multiplyByNInv(const SBStateDigest& sbs, bool matrixOnRight,
                     const Real* in, Real* out) const override
 {
+    std::cout << "BALLBUG RBSpecFree multiplyByNInv " << std::endl;
     assert(sbs.getStage() >= Stage::Position);
     assert(in && out);
 
@@ -371,6 +384,7 @@ void multiplyByNInv(const SBStateDigest& sbs, bool matrixOnRight,
 void multiplyByNDot(const SBStateDigest& sbs, bool matrixOnRight, 
                     const Real* in, Real* out) const override
 {
+    std::cout << "BALLBUG RBSpecFree multiplyByNDot " << std::endl;
     assert(sbs.getStage() > Stage::Velocity);
     assert(in && out);
 
@@ -424,6 +438,7 @@ void multiplyByNDot(const SBStateDigest& sbs, bool matrixOnRight,
 // Cost: Euler angle mode - 22 flops, Quaternion mode - 41 flops.
 void calcQDotDot(const SBStateDigest& sbs, const Real* udot, 
                                    Real* qdotdot) const override {
+        std::cout << "BALLBUG RBSpecFree calcQDotDot " << std::endl;
     assert(sbs.getStage() > Stage::Velocity);
     assert(udot && qdotdot);
 
@@ -471,6 +486,7 @@ bool isUsingQuaternion(const SBStateDigest& sbs, MobilizerQIndex& startOfQuatern
 
 void setMobilizerDefaultPositionValues(const SBModelVars& mv, Vector& q) const override
 {
+    std::cout << "BALLBUG RBSpecFree setMobilizerDefaultPositionValues " << std::endl;
     if (this->getUseEulerAngles(mv)) {
         this->toQVec3(q,4) = Vec3(0); // TODO: kludge, clear unused element
         this->toQ(q) = 0;
@@ -485,7 +501,8 @@ bool enforceQuaternionConstraints(
     Vector&             q,
     Vector&             qErrest) const override
 {
-    if (this->getUseEulerAngles(sbs.getModelVars())) 
+    std::cout << "BALLBUG RBSpecFree enforceQuaternionConstraints " << std::endl;
+    if (this->getUseEulerAngles(sbs.getModelVars()))
         return false; // no change
 
     Vec4& quat = this->toQuat(q);
@@ -501,6 +518,7 @@ bool enforceQuaternionConstraints(
 
 void convertToEulerAngles(const Vector& inputQ, Vector& outputQ) const override
 {
+    std::cout << "BALLBUG RBSpecFree convertToEulerAngles " << std::endl;
     this->toQVec3(outputQ, 4) = Vec3(0); // clear unused element
     this->toQVec3(outputQ, 3) = this->fromQVec3(inputQ, 4);
     this->toQVec3(outputQ, 0) = Rotation(Quaternion(this->fromQuat(inputQ))).convertRotationToBodyFixedXYZ();
@@ -508,6 +526,7 @@ void convertToEulerAngles(const Vector& inputQ, Vector& outputQ) const override
 
 void convertToQuaternions(const Vector& inputQ, Vector& outputQ) const override
 {
+    std::cout << "BALLBUG RBSpecFree convertToQuaternions " << std::endl;
     this->toQVec3(outputQ, 4) = this->fromQVec3(inputQ, 3);
     Rotation rot;
     rot.setRotationToBodyFixedXYZ(this->fromQVec3(inputQ, 0));

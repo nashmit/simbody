@@ -857,7 +857,8 @@ typename Mat<1,1,E,CS,RS>::TInvert lapackInverse(const Mat<1,1,E,CS,RS>& m) {
 /// @see inverse()
 template <int M, class E, int CS, int RS> inline
 typename Mat<M,M,E,CS,RS>::TInvert lapackInverse(const Mat<M,M,E,CS,RS>& m) {
-    // Copy the source matrix, which has arbitrary row and column spacing,
+        //std::cout << "BALLBUG Mat inverse " << "0 m= " << m << std::endl;
+        // Copy the source matrix, which has arbitrary row and column spacing,
     // into the type for its inverse, which must be dense, columnwise
     // storage. That means its column spacing will be M and row spacing
     // will be 1, as Lapack expects for a Full matrix.
@@ -890,13 +891,17 @@ typename Mat<M,M,E,CS,RS>::TInvert lapackInverse(const Mat<M,M,E,CS,RS>& m) {
     SimTK_ASSERT1(info>=0, "Argument %d to Lapack getri routine was bad", -info);
     SimTK_ERRCHK1_ALWAYS(info==0, "lapackInverse(Mat<>)",
         "Matrix is singular so can't be inverted (Lapack getri info=%d).", info);
-    return inv;
+
+        //std::cout << "BALLBUG Mat inverse " << "0 inv= " << inv << std::endl;
+
+        return inv;
 }
 
 
 /// Specialized 1x1 Mat inverse: costs one divide.
 template <class E, int CS, int RS> inline
 typename Mat<1,1,E,CS,RS>::TInvert inverse(const Mat<1,1,E,CS,RS>& m) {
+    std::cout << "Mat inverse " << "1" << std::endl;
     typedef typename Mat<1,1,E,CS,RS>::TInvert MInv;
     return MInv( E(typename CNT<E>::StdNumber(1)/m(0,0)) );
 }
@@ -904,6 +909,7 @@ typename Mat<1,1,E,CS,RS>::TInvert inverse(const Mat<1,1,E,CS,RS>& m) {
 /// Specialized 1x1 SymMat inverse: costs one divide.
 template <class E, int RS> inline
 typename SymMat<1,E,RS>::TInvert inverse(const SymMat<1,E,RS>& s) {
+        std::cout << "Mat inverse " << "2" << std::endl;
     typedef typename SymMat<1,E,RS>::TInvert SInv;
     return SInv( E(typename CNT<E>::StdNumber(1)/s.diag()[0]) );
 }
@@ -911,6 +917,7 @@ typename SymMat<1,E,RS>::TInvert inverse(const SymMat<1,E,RS>& s) {
 /// Specialized 2x2 Mat inverse: costs one divide plus 9 flops.
 template <class E, int CS, int RS> inline
 typename Mat<2,2,E,CS,RS>::TInvert inverse(const Mat<2,2,E,CS,RS>& m) {
+        std::cout << "Mat inverse " << "3" << std::endl;
     const E               d  ( det(m) );
     const typename CNT<E>::TInvert ood( typename CNT<E>::StdNumber(1)/d );
     return typename Mat<2,2,E,CS,RS>::TInvert( E( ood*m(1,1)), E(-ood*m(0,1)),
@@ -920,7 +927,9 @@ typename Mat<2,2,E,CS,RS>::TInvert inverse(const Mat<2,2,E,CS,RS>& m) {
 /// Specialized 2x2 SymMat inverse: costs one divide plus 7 flops.
 template <class E, int RS> inline
 typename SymMat<2,E,RS>::TInvert inverse(const SymMat<2,E,RS>& s) {
-    const E               d  ( det(s) );
+        std::cout << "Mat inverse " << "4" << std::endl;
+
+        const E               d  ( det(s) );
     const typename CNT<E>::TInvert ood( typename CNT<E>::StdNumber(1)/d );
     return typename SymMat<2,E,RS>::TInvert( E( ood*s(1,1)),
                                              E(-ood*s(1,0)), E(ood*s(0,0)));
@@ -932,7 +941,9 @@ typename SymMat<2,E,RS>::TInvert inverse(const SymMat<2,E,RS>& s) {
 /// @see lapackInverse()
 template <class E, int CS, int RS> inline
 typename Mat<3,3,E,CS,RS>::TInvert inverse(const Mat<3,3,E,CS,RS>& m) {
-    // Calculate determinants for each 2x2 submatrix with first row removed.
+        std::cout << "Mat inverse " << "5" << std::endl;
+
+        // Calculate determinants for each 2x2 submatrix with first row removed.
     // (See the specialized 3x3 determinant routine above.) We're calculating
     // this explicitly here because we can re-use the intermediate terms.
     const E d00 (m(1,1)*m(2,2)-m(1,2)*m(2,1)),
@@ -966,7 +977,9 @@ typename Mat<3,3,E,CS,RS>::TInvert inverse(const Mat<3,3,E,CS,RS>& m) {
 /// @see lapackSymInverse()
 template <class E, int RS> inline
 typename SymMat<3,E,RS>::TInvert inverse(const SymMat<3,E,RS>& s) {
-    // Calculate determinants for each 2x2 submatrix with first row removed.
+        std::cout << "Mat inverse " << "6" << std::endl;
+
+        // Calculate determinants for each 2x2 submatrix with first row removed.
     // (See the specialized 3x3 determinant routine above.) We're calculating
     // this explicitly here because we can re-use the intermediate terms.
     const E d00 (s(1,1)*s(2,2)-s(1,2)*s(2,1)),
@@ -994,6 +1007,7 @@ typename SymMat<3,E,RS>::TInvert inverse(const SymMat<3,E,RS>& s) {
 /// @see lapackInverse()
 template <int M, class E, int CS, int RS> inline
 typename Mat<M,M,E,CS,RS>::TInvert inverse(const Mat<M,M,E,CS,RS>& m) {
+    std::cout << "before lapackInverse m = " << m << std::endl;
     return lapackInverse(m);
 }
 

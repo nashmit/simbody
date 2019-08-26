@@ -71,6 +71,7 @@ RBNodeBall(const MassProperties& mProps_B,
 void setQToFitRotationImpl(const SBStateDigest& sbs, const Rotation& R_FM,
                           Vector& q) const 
 {
+    std::cout << "BALLBUG RBBall " << " setQToFitRotationImpl" << std::endl;
     if (this->getUseEulerAngles(sbs.getModelVars()))
         this->toQ(q)    = R_FM.convertRotationToBodyFixedXYZ();
     else
@@ -78,6 +79,7 @@ void setQToFitRotationImpl(const SBStateDigest& sbs, const Rotation& R_FM,
 }
 
 void setQToFitTranslationImpl(const SBStateDigest& sbs, const Vec3& p_FM, Vector& q) const {
+    std::cout << "BALLBUG RBBall " << " setQToFitTranslationImpl" << std::endl;
     // M and F frame origins are always coincident for this mobilizer so there is no
     // way to create a translation by rotating. So the only translation we can represent is 0.
 }
@@ -85,12 +87,14 @@ void setQToFitTranslationImpl(const SBStateDigest& sbs, const Vec3& p_FM, Vector
 void setUToFitAngularVelocityImpl(const SBStateDigest& sbs, const Vector&, const Vec3& w_FM,
                                  Vector& u) const
 {
+    std::cout << "BALLBUG RBBall " << " setUToFitAngularVelocityImpl" << std::endl;
         this->toU(u) = w_FM; // relative angular velocity always used as generalized speeds
 }
 
 void setUToFitLinearVelocityImpl
    (const SBStateDigest& sbs, const Vector&, const Vec3& v_FM, Vector& u) const
 {
+    std::cout << "BALLBUG RBBall " << " setUToFitLinearVelocityImpl" << std::endl;
     // M and F frame origins are always coincident for this mobilizer so there is no
     // way to create a linear velocity by rotating. So the only linear velocity
     // we can represent is 0.
@@ -105,7 +109,9 @@ enum {AnglePoolSize=7, QuatPoolSize=1};
 enum {AngleCosQ=0, AngleSinQ=3, AngleOOCosQy=6};
 enum {QuatOONorm=0};
 int calcQPoolSize(const SBModelVars& mv) const
-{   return this->getUseEulerAngles(mv) ? AnglePoolSize : QuatPoolSize; }
+{
+    std::cout << "BALLBUG RBBall " << " calcQPoolSize" << std::endl;
+    return this->getUseEulerAngles(mv) ? AnglePoolSize : QuatPoolSize; }
 
 // This is expensive in Euler angle mode due to the three sin/cos computations
 // required (about 150 flops). In quaternion mode it is much cheaper (about
@@ -119,6 +125,7 @@ void performQPrecalculations(const SBStateDigest& sbs,
     if (this->getUseEulerAngles(sbs.getModelVars())) {
         assert(q && nq==3 && qCache && nQCache==AnglePoolSize && nQErr==0);
 
+        std::cout << "BALLBUG RBSpecBall performQPrecalculations UseEulerAngles" << std::endl;
         const Real cy = std::cos(q[1]);
         Vec3::updAs(&qCache[AngleCosQ]) =
             Vec3(std::cos(q[0]), cy, std::cos(q[2]));
@@ -128,6 +135,7 @@ void performQPrecalculations(const SBStateDigest& sbs,
     } else {
         assert(q && nq==4 && qCache && nQCache==QuatPoolSize && 
                qErr && nQErr==1);
+        std::cout << "BALLBUG RBSpecBall performQPrecalculations UseQuaternion" << std::endl;
 
         const Real quatLen = Vec4::getAs(q).norm();
         qErr[0] = quatLen - Real(1);    // normalization error
@@ -146,19 +154,22 @@ void calcX_FM(const SBStateDigest& sbs,
     // Rotation.
     if (this->getUseEulerAngles(sbs.getModelVars())) {
         assert(q && nq==3 && qCache && nQCache==AnglePoolSize);
+        std::cout << "BALLBUG RBSpecBall calcX_FM UseEulerAngles" << std::endl;
         X_F0M0.updR().setRotationToBodyFixedXYZ // 18 flops
            (Vec3::getAs(&qCache[AngleCosQ]), Vec3::getAs(&qCache[AngleSinQ]));
     } else {
         assert(q && nq==4 && qCache && nQCache==QuatPoolSize);
         // Must use a normalized quaternion to generate the rotation matrix.
         // Here we normalize with just 4 flops using precalculated 1/norm(q).
-        const Quaternion quat(Vec4::getAs(q)*qCache[QuatOONorm], true); 
+        std::cout << "BALLBUG RBSpecBall calcX_FM UseQuaternion" << std::endl;
+        const Quaternion quat(Vec4::getAs(q)*qCache[QuatOONorm], true);
         X_F0M0.updR().setRotationFromQuaternion(quat); // 29 flops
-        std::cout << "BALLBUG RBSpecBall " << " calcX_FM X_F0M0 " << X_F0M0 << std::endl;
     }
 
     // Translation.
     X_F0M0.updP() = 0; // This joint can't translate.
+    std::cout << "BALLBUG RBSpecBall " << " calcX_FM X_F0M0 " << X_F0M0 << std::endl;
+
 }
 
 // Generalized speeds are the angular velocity expressed in F, so they
@@ -238,6 +249,7 @@ void calcQDot(const SBStateDigest& sbs, const Real* u,
 void multiplyByN(const SBStateDigest& sbs, bool matrixOnRight, 
                  const Real* in, Real* out) const
 {
+    std::cout << "BALLBUG RBBall " << " multiplyByN" << std::endl;
     assert(sbs.getStage() >= Stage::Position);
     assert(in && out);
 
@@ -280,6 +292,7 @@ void multiplyByN(const SBStateDigest& sbs, bool matrixOnRight,
 void multiplyByNInv(const SBStateDigest& sbs, bool matrixOnRight,
                     const Real* in, Real* out) const
 {
+    std::cout << "BALLBUG RBBall " << " multiplyByNInv" << std::endl;
     assert(sbs.getStage() >= Stage::Position);
     assert(in && out);
 
@@ -322,6 +335,7 @@ void multiplyByNInv(const SBStateDigest& sbs, bool matrixOnRight,
 void multiplyByNDot(const SBStateDigest& sbs, bool matrixOnRight,
                     const Real* in, Real* out) const
 {
+    std::cout << "BALLBUG RBBall " << " multiplyByNDot" << std::endl;
     assert(sbs.getStage() > Stage::Velocity);
     assert(in && out);
 
@@ -368,6 +382,7 @@ void multiplyByNDot(const SBStateDigest& sbs, bool matrixOnRight,
 // Cost: Euler angle mode - 22 flops, Quaternion mode - 41 flops.
 void calcQDotDot(const SBStateDigest& sbs, const Real* udot, 
                                    Real* qdotdot) const {
+        std::cout << "BALLBUG RBBall " << " calcQDotDot" << std::endl;
     assert(sbs.getStage() > Stage::Velocity);
     assert(udot && qdotdot);
 
@@ -405,9 +420,11 @@ void calcQDotDot(const SBStateDigest& sbs, const Real* udot,
 
 int getMaxNQ()              const {return 4;}
 int getNQInUse(const SBModelVars& mv) const {
+    std::cout << "BALLBUG RBBall " << " getNQInUse" << std::endl;
     return this->getUseEulerAngles(mv) ? 3 : 4;
 } 
 bool isUsingQuaternion(const SBStateDigest& sbs, MobilizerQIndex& startOfQuaternion) const {
+    std::cout << "BALLBUG RBBall " << " isUsingQuaternion" << std::endl;
     if (this->getUseEulerAngles(sbs.getModelVars())) {
         startOfQuaternion.invalidate(); 
         return false;
@@ -420,6 +437,7 @@ void setMobilizerDefaultPositionValues(
     const SBModelVars& mv,
     Vector&            q) const 
 {
+    std::cout << "BALLBUG RBBall " << " setMobilizerDefaultPositionValues" << std::endl;
     if (this->getUseEulerAngles(mv)) {
         //TODO: kludge
         this->toQuat(q) = Vec4(0); // clear unused element
@@ -433,7 +451,8 @@ bool enforceQuaternionConstraints(
     Vector&             q,
     Vector&             qErrest) const 
 {
-    if (this->getUseEulerAngles(sbs.getModelVars())) 
+    std::cout << "BALLBUG RBBall " << " enforceQuaternionConstraints" << std::endl;
+    if (this->getUseEulerAngles(sbs.getModelVars()))
         return false;   // no change
 
     Vec4& quat = this->toQuat(q);
@@ -448,11 +467,13 @@ bool enforceQuaternionConstraints(
 }
 
 void convertToEulerAngles(const Vector& inputQ, Vector& outputQ) const {
+    std::cout << "BALLBUG RBBall " << " convertToEulerAngles" << std::endl;
     this->toQuat(outputQ) = Vec4(0); // clear unused element
     this->toQ(outputQ) = Rotation(Quaternion(this->fromQuat(inputQ))).convertRotationToBodyFixedXYZ();
 }
 
 void convertToQuaternions(const Vector& inputQ, Vector& outputQ) const {
+    std::cout << "BALLBUG RBBall " << " convertToQuaternions" << std::endl;
     Rotation rot;
     rot.setRotationToBodyFixedXYZ(this->fromQ(inputQ));
     this->toQuat(outputQ) = rot.convertRotationToQuaternion().asVec4();

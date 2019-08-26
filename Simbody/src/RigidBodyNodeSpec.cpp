@@ -48,7 +48,7 @@ calcParentToChildVelocityJacobianInGround
     const SBTreePositionCache&  pc, 
     HType&                      H_PB_G) const
 {
-    std::cout << "BALLBUG RBSpec " << nodeNum << " calcParentToChildVelocityJacobianInGround" << std::endl;
+    std::cout << "BALLBUG RBSpec " << nodeNum << " calcParentToChildVelocityJacobianInGround H_PB (== H_FB)" << std::endl;
     const HType& H_FM = getH_FM(pc);
 
     // We want R_GF so we can reexpress the cross-joint velocity V_FB (==V_PB)
@@ -71,6 +71,8 @@ calcParentToChildVelocityJacobianInGround
         H_MB_F[0] =  Vec3(0); // fills top row with zero
         H_MB_F[1] = -r_MB_F % H_FM[0]; // 9*dof (negation not actually done)
         H_PB_G = R_GF * (H_FM + H_MB_F); // 36*dof flops
+        std::cout << "BALLBUG RBSpec " << nodeNum << " calcParentToChildVelocityJacobianInGround H_PB_F (== H_FB_F) = " << H_FM + H_MB_F << std::endl;
+        std::cout << "BALLBUG RBSpec " << nodeNum << " calcParentToChildVelocityJacobianInGround H_PB_G (== H_FB_G) = " << H_PB_G << std::endl;
     }
 }
 
@@ -88,7 +90,7 @@ calcParentToChildVelocityJacobianInGroundDot(
     const SBTreeVelocityCache&  vc,
     HType&                      HDot_PB_G) const
 {
-    std::cout << "BALLBUG RBSpec " << nodeNum << " calcParentToChildVelocityJacobianInGroundDot" << std::endl;
+    std::cout << "BALLBUG RBSpec " << nodeNum << " calcParentToChildVelocityJacobianInGroundDot HDot_PB (== HDot_FB)" << std::endl;
     const HType& H_FM    = getH_FM(pc);
     const HType& HDot_FM = getHDot_FM(vc);
 
@@ -258,14 +260,18 @@ realizeArticulatedBodyInertiasInward(
     const SBTreePositionCache&      pc,
     SBArticulatedBodyInertiaCache&  abc) const 
 {
-    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward" << std::endl;
+    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward PPlus (P, H, D)" << std::endl;
     STUDYN("  RigidBodyNodeSpec::realizeArticulatedBodyInertiasInward tip-to-base Mk,Phi,H -> P,PPlus,D,DI,G");
     ArticulatedInertia& P = updP(abc);
 
     // Start with the spatial inertia of the current body (in Ground frame).
     P = ArticulatedInertia(getMk_G(pc)); // 12 flops
-    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward Mk_G " << getMk_G(pc).toSpatialMat() << std::endl;
-    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward P " << P.toSpatialMat() << std::endl;
+    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward P = Mk_G" << P.toSpatialMat() << std::endl;
+    std::cout << std::fixed << std::setprecision(30) ;
+    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward det Mk_G[0][0] " << det(P.toSpatialMat()[0][0]) << std::endl;
+    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward det Mk_G[0][1] " << det(P.toSpatialMat()[0][1]) << std::endl;
+    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward det Mk_G[1][0] " << det(P.toSpatialMat()[1][0]) << std::endl;
+    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward det Mk_G[1][1] " << det(P.toSpatialMat()[1][1]) << std::endl;
 
     // For each child, we previously took its articulated body inertia P and 
     // removed the portion of that inertia that can't be felt from the parent
@@ -283,6 +289,9 @@ realizeArticulatedBodyInertiasInward(
         const PhiMatrix&          phiChild   = children[i]->getPhi(pc);
         const ArticulatedInertia& PPlusChild = children[i]->getPPlus(abc);
 
+        std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward phiChild " << i << " " << phiChild.toSpatialMat() << std::endl;
+        std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward PPlusChild " << i << " " << PPlusChild.toSpatialMat() << std::endl;
+
         // Apply the articulated body shift.
         // This takes 93 flops (72 for the shift and 21 to add it in).
         // (Note that PPlusChild==PChild if child's mobilizer is prescribed.)
@@ -290,7 +299,8 @@ realizeArticulatedBodyInertiasInward(
         STUDYN("  RigidBodyNodeSpec::realizeArticulatedBodyInertiasInward P = Phi * P+ * ~Phi + Mk");
 
     }
-    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward P after " << P.toSpatialMat() << std::endl;
+
+    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward P shifted " << P.toSpatialMat() << std::endl;
 
     // Now compute PPlus. P+ = P for a prescribed mobilizer. Otherwise
     // it is P+ = P - P H DI ~H P = P - G*~PH. In the prescribed case
@@ -305,22 +315,39 @@ realizeArticulatedBodyInertiasInward(
 
     // This is a non-prescribed mobilizer. Compute D, DI, G then P+.
 
-    const HType&  H  = getH(pc);
+    const HType&  H  = getH(pc); // H_PB_G
     HType&        G  = updG(abc);
     Mat<dof,dof>& D  = updD(abc);
     Mat<dof,dof>& DI = updDI(abc);
 
     std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward H " << H << std::endl;
-    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward G " << G << std::endl;
-    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward D " << D << std::endl;
-    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward DI " << DI << std::endl;
 
     const HType PH = P*H;   // 66*dof   flops
     D  = ~H * PH;           // 11*dof^2 flops (symmetric result)
     STUDYN("  RigidBodyNodeSpec::realizeArticulatedBodyInertiasInward D = HP~H");
 
+    // BALLBUG Quick Dirty fix
+    //std::cout << std::fixed << std::setprecision(5) ;
+    //for(int i = 0; i < dof; i++){
+    //    for(int j = 0; j < dof; j++){
+    //        D[i][j] = std::stod(std::to_string(D[i][j]));
+    //    }
+    //}
+    // BALLBUG Quick Dirty fix =====
+
+    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward D " << D << std::endl;
+    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward det D " << det(D) << std::endl;
+/*    std::cout << D[0][0] << " " << D[0][1] << " " << D[0][2] << std::endl;
+    std::cout << D[1][0] << " " << D[1][1] << " " << D[1][2] << std::endl;
+    std::cout << D[2][0] << " " << D[2][1] << " " << D[2][2] << std::endl;*/
     // this will throw an exception if the matrix is ill conditioned
-    DI = D.invert();                        // ~dof^3 flops (symmetric)
+    //DI = D.invert();                        // ~dof^3 flops (symmetric)
+    DI = lapackInverse(D); // specifies if matrix is singular
+
+    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward mid D " << D << std::endl;
+    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward mid DI " << DI << std::endl;
+    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward mid D*DI " << D*DI << std::endl;
+
     G  = PH * DI;                           // 12*dof^2-6*dof flops
     STUDYN("  RigidBodyNodeSpec::realizeArticulatedBodyInertiasInward G = PH / D");
 
@@ -347,6 +374,8 @@ realizeArticulatedBodyInertiasInward(
     std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward after G " << G << std::endl;
     std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward after D " << D << std::endl;
     std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward after DI " << DI << std::endl;
+    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward after D*DI " << D*DI << std::endl;
+
 }
 
 
@@ -390,7 +419,7 @@ RigidBodyNodeSpec<dof, noR_FM, noX_MB, noR_PF>::calcUDotPass1Inward(
     SpatialVec*                             allZPlus,
     Real*                                   allEpsilon) const 
 {
-    std::cout << "BALLBUG  "<< nodeNum << " RBSpec calcUDotPass1Inward" << std::endl;
+    std::cout << "BALLBUG  "<< nodeNum << " RBSpec calcUDotPass1Inward zPlus(P, H, udot), eps(f, H, z)" << std::endl;
     STUDYN("  RigidBodyNodeSpec::calcUDotPass1Inward tip-to-base P,Phi,H,G, F,f,udot_p -> z,zPlus,eps");
     const Vec<dof>&   f     = fromU(jointForces);
     const SpatialVec& F     = bodyForces[nodeNum];
@@ -444,7 +473,7 @@ RigidBodyNodeSpec<dof, noR_FM, noX_MB, noR_PF>::calcUDotPass2Outward(
     Real*                                   allUDot,
     Real*                                   allTau) const
 {
-    std::cout << "BALLBUG RBSpec  "<< nodeNum << " calcUDotPass2Outward" << std::endl;
+    std::cout << "BALLBUG RBSpec  "<< nodeNum << " calcUDotPass2Outward APlus (==alphaPlus), udot, A_GB(==alpha)" << std::endl;
     STUDYN("  RigidBodyNodeSpec::calcUDotPass2Outward base-to-tip accelerations APlus,udot,A_GB");
     const Vec<dof>& eps  = fromU(allEpsilon);
     SpatialVec&     A_GB = allA_GB[nodeNum];
@@ -612,7 +641,21 @@ RigidBodyNodeSpec<dof, noR_FM, noX_MB, noR_PF>::multiplyBySqrtMInvPassOutward(
 
     std::cout << "BALLBUG RBSpec  "<< nodeNum << " multiplyBySqrtMInvPassOutward DI " << DI << std::endl;
 
-    // DI Cholesky Decomposition: 
+    // BALLBUG Quick Dirty fix
+    //Mat<dof,dof> myDI; // BALLBUG
+    //std::cout << std::fixed << std::setprecision(5) ;
+    //for(int i = 0; i < dof; i++){
+    //  for(int j = 0; j < dof; j++){
+    //        myDI[i][j] = std::stod(std::to_string(DI[i][j]));
+    //    }
+    //}
+    // Symmetrize
+    //D[1][0] = D[0][1];
+    //D[2][0] = D[0][2];
+    //D[2][1] = D[1][2];
+    // BALLBUG Quick Dirty fix =====
+
+    // DI Cholesky Decomposition:
     int i, j, k;
     Mat<dof,dof> sqrtDI(1);
     if(dof > 1){
@@ -629,9 +672,9 @@ RigidBodyNodeSpec<dof, noR_FM, noX_MB, noR_PF>::multiplyBySqrtMInvPassOutward(
         }
         De(j,j) = DI(j,j) - s1;
         // Off diagonal
-        for(i=(j+1); i<dof; i++){
+        for(i = (j+1); i < dof; i++){
           s2 = 0.0;
-          for(k=0; k<j; k++){
+          for(k = 0; k < j; k++){
             s2 += L(i,k) * L(j,k) * De(k,k);
           }
           L(i,j) = (1 / De(j,j)) * (DI(i,j) - s2);
@@ -639,7 +682,7 @@ RigidBodyNodeSpec<dof, noR_FM, noX_MB, noR_PF>::multiplyBySqrtMInvPassOutward(
       }
 
         // Square root the diagonal
-      for(j=0; j<dof; j++){De(j,j) = sqrt(De(j,j));}
+      for(j=0; j<dof; j++){De(j,j) = std::sqrt(De(j,j));}
 
       // Get LsqrtDe
       sqrtDI = L *  De ;
