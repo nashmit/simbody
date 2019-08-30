@@ -94,7 +94,7 @@ bool VerletIntegratorRep::attemptDAEStep
 
   try
   {
-    std::cout << "BALLBUG DAE BEGIN " << advanced.getQ() << std::endl;
+    std::cout << "BALLBUG DAE BEGIN h q "<< h << " " << advanced.getQ() << std::endl;
     numIterations = 0;
 
     VectorView qErrEst  = yErrEst(    0, nq);       // all 3rd order estimates

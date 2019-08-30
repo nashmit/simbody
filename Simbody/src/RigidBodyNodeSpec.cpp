@@ -269,9 +269,22 @@ realizeArticulatedBodyInertiasInward(
     std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward P = Mk_G" << P.toSpatialMat() << std::endl;
     std::cout << std::fixed << std::setprecision(30) ;
     std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward det Mk_G[0][0] " << det(P.toSpatialMat()[0][0]) << std::endl;
-    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward det Mk_G[0][1] " << det(P.toSpatialMat()[0][1]) << std::endl;
-    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward det Mk_G[1][0] " << det(P.toSpatialMat()[1][0]) << std::endl;
+    //std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward det Mk_G[0][1] " << det(P.toSpatialMat()[0][1]) << std::endl; // = 0
+    //std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward det Mk_G[1][0] " << det(P.toSpatialMat()[1][0]) << std::endl; // = 0
     std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward det Mk_G[1][1] " << det(P.toSpatialMat()[1][1]) << std::endl;
+
+    // BALLBUG
+    Mat66 Pmat;
+    for(int i = 0; i < 2; i++){
+        for(int j = 0; j < 2; j++){
+            for(int k = 0; k < 3; k++){
+                for(int l = 0; l < 3; l++){
+                    Pmat[i*3 + k][j*3 + l] = P.toSpatialMat()[i][j][k][l];
+                }
+            }
+        }
+    }
+    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward det P " << det(Pmat) << std::endl;
 
     // For each child, we previously took its articulated body inertia P and 
     // removed the portion of that inertia that can't be felt from the parent
@@ -301,6 +314,16 @@ realizeArticulatedBodyInertiasInward(
     }
 
     std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward P shifted " << P.toSpatialMat() << std::endl;
+    for(int i = 0; i < 2; i++){
+        for(int j = 0; j < 2; j++){
+            for(int k = 0; k < 3; k++){
+                for(int l = 0; l < 3; l++){
+                    Pmat[i*3 + k][j*3 + l] = P.toSpatialMat()[i][j][k][l];
+                }
+            }
+        }
+    }
+    std::cout << "BALLBUG RBSpec "<< nodeNum << " realizeArticulatedBodyInertiasInward det P shifted " << det(Pmat) << std::endl;
 
     // Now compute PPlus. P+ = P for a prescribed mobilizer. Otherwise
     // it is P+ = P - P H DI ~H P = P - G*~PH. In the prescribed case
